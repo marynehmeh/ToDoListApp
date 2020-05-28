@@ -1,5 +1,9 @@
 import React, { Component, useState, setState }  from 'react';
 import './App.css';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Add from '@material-ui/icons/Add';
+
 
 function TodoForm({addTodo,date}){
   const [value, setValue] = useState("");
@@ -15,48 +19,45 @@ function TodoForm({addTodo,date}){
   }
 
   return (
-  <form onSubmit={handleSubmit}>
+  <form>
     <input type="text" className="input" placeholder='Add new task' value={value} onChange={e=> setValue(e.target.value)} />
+    <IconButton aria-label="add" onClick={handleSubmit}>
+      <Add/>
+    </IconButton>
   </form>
   );
 }
 
+function Todo({index, todo, date, deleteTodo}){
+  return (
+    <div className="todo">{todo.text}
+                              <IconButton aria-label="delete" onClick={()=> deleteTodo(index, date)}>
+                                <DeleteIcon />
+                              </IconButton>
+    </div>
+  )
+
+}
 
 function App() {
-  const Todo = ({ todo }) => <div className="todo">{todo.text}</div>;
+ 
   const [todos, setTodos] = useState([
     { day: 'Monday',
-      tasks: [ {
-        text: "Learn about React"
-      } ] } ,
+      tasks: [ ] } ,
     { day: 'Tuesday',
-      tasks: [ {
-       text: "Grocery shopping"
-       } ] } ,
+      tasks: [ ] } ,
     { day: 'Wedsnesday',
-      tasks: [ {
-      text: "Clean house"
-        } ] } ,
+      tasks: [ ] } ,
     { day: 'Thursday',
-      tasks: [ {
-      text: "Clean house"
-        } ] } ,
+      tasks: [ ] } ,
         { day: 'Friday',
-      tasks: [ {
-      text: "Clean house"
-        } ] } ,
+      tasks: [ ] } ,
         { day: 'Saturday',
-        tasks: [ {
-        text: "Clean house"
-          } ] } ,
+        tasks: [ ] } ,
           { day: 'Sunday',
-      tasks: [ {
-      text: "Clean house"
-        }, {
-          text: "Laundry"
-            }  ] } ,
+      tasks: [ ] } ,
   ]);
- 
+
   const addTodo = (value,date) => {
     const dayTodo = todos.filter(day => day.day === date)[0]; 
     dayTodo.tasks = [...dayTodo.tasks, {text: value}]
@@ -64,6 +65,13 @@ function App() {
     setTodos(newTodos); 
   }
 
+  const deleteTodo = (index,date) => {
+    const dayTodo = todos.filter(day => day.day === date)[0];
+    dayTodo.tasks.splice(index,1);
+    const newTodos = [...todos];
+    setTodos(newTodos);
+  }
+  
   return (
     <div className="app">
       <header className="app-header"> 
@@ -76,8 +84,8 @@ function App() {
           <div className="day">
           <div className="todo-list">
             <div className="day-tag">{day.day}</div> 
-            <TodoForm addTodo={addTodo} date={day.day} />
-            {day.tasks.map((todo,index)=> (<Todo id='task' key={index} index={index} todo={todo} /> ))}
+            <TodoForm addTodo={addTodo} date={day.day} /> 
+            {day.tasks.map((todo,index)=> (<Todo id='task' key={index} index={index} date={day.day} todo={todo} deleteTodo={deleteTodo}/>))}
           </div>
           </div>
       ))}
