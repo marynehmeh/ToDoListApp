@@ -1,9 +1,9 @@
-import React, { Component, useState, setState }  from 'react';
+import React, {  useState, setState }  from 'react';
 import './App.css';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Add from '@material-ui/icons/Add';
-
+import Radio from '@material-ui/core/Radio';
 
 function TodoForm({addTodo,date}){
   const [value, setValue] = useState("");
@@ -30,10 +30,37 @@ function TodoForm({addTodo,date}){
 
 function Todo({index, todo, date, deleteTodo}){
   return (
-    <div className="todo">{todo.text}
-                              <IconButton aria-label="delete" onClick={()=> deleteTodo(index, date)}>
-                                <DeleteIcon />
-                              </IconButton>
+    <div className="todo"><p>{todo.text}</p>
+      <div className="icons">
+          <Radio
+          //checked={selectedValue === 'a'}
+          //onChange={handleChange}
+          size="small"
+          value="a"
+          name="radio-button-demo"
+          inputProps={{ 'aria-label': 'A' }}
+        />
+                <Radio
+          //checked={selectedValue === 'a'}
+          //onChange={handleChange}
+          size="small"
+          value="a"
+          name="radio-button-demo"
+          inputProps={{ 'aria-label': 'A' }}
+        />
+        <Radio
+          //checked={selectedValue === 'a'}
+          //onChange={handleChange}
+          fill="green"
+          size="small"
+          value="a"
+          name="radio-button-demo"
+          inputProps={{ 'aria-label': 'A' }}
+        />
+        <IconButton aria-label="delete" onClick={()=> deleteTodo(index, date)}>
+          <DeleteIcon />
+        </IconButton>
+      </div>
     </div>
   )
 
@@ -73,12 +100,13 @@ function App() {
   }
 
   return (
+    <div>
+    <header className="app-header"> 
+    <p>
+    Weekly To-Do List
+    </p>
+    </header>
     <div className="app">
-      <header className="app-header"> 
-      <p>
-      Weekly To-Do List
-      </p>
-      </header>
       <div className='days'>
         {todos.map((day,index)=>(
           <div className="day">
@@ -90,6 +118,7 @@ function App() {
           </div>
       ))}
       </div>
+    </div>
     </div>
   );
 }
