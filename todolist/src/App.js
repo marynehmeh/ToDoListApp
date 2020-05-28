@@ -46,7 +46,7 @@ function App() {
       tasks: [ ] } ,
     { day: 'Tuesday',
       tasks: [ ] } ,
-    { day: 'Wedsnesday',
+    { day: 'Wednesday',
       tasks: [ ] } ,
     { day: 'Thursday',
       tasks: [ ] } ,
@@ -71,7 +71,7 @@ function App() {
     const newTodos = [...todos];
     setTodos(newTodos);
   }
-  
+
   return (
     <div className="app">
       <header className="app-header"> 
