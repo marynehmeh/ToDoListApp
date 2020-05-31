@@ -40,14 +40,15 @@ function App() {
     const newTodos = [...todos];
     setTodos(newTodos);
   }
-
+ //TO-DO: add filter based on view selector
   return (
     <div className='app'>
       <div className="header-container">
         <DenseAppBar handleView={handleView}/>
       </div>
     <div>
-      <div className='days'>
+    {view === 'week' ? 
+    <div className='days'>
         {todos.map((day,index)=>(
           <div className="day">
           <div className="todo-list">
@@ -57,8 +58,16 @@ function App() {
           </div>
           </div>
       ))}
-      </div>
-      {view}
+      </div>: 
+        <div className='days'>
+          <div className="day">
+          <div className="todo-list">
+            <div className="day-tag">Monday</div> 
+            <TodoForm addTodo={addTodo} date="Monday" /> 
+            {todos[0].tasks.map((todo,index)=> (<Todo id='task' key={index} index={index} date="Monday" todo={todo} deleteTodo={deleteTodo}/>))}
+          </div>
+          </div>
+      </div>}
     </div>
     </div>
   );

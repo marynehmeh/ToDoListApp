@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ControlledOpenSelect({onTrigger}) {
     const classes = useStyles();
-    const [view, setView] = useState("week");
+    const [view, setView] = useState("day");
     const [open, setOpen] = useState(false);
   
     const handleClose = () => {
@@ -29,7 +29,6 @@ function ControlledOpenSelect({onTrigger}) {
     const onChange = (event) => {
         setView(event.target.value);
         onTrigger(view);
-        console.log(view);
     }
     const handleOpen = () => {
       setOpen(true);
@@ -49,8 +48,8 @@ function ControlledOpenSelect({onTrigger}) {
             onChange={(event)=>{onChange(event)}}
             label="View"
           >
-            <MenuItem value={'day'}>Daily</MenuItem>
-            <MenuItem value={'week'}>Weekly</MenuItem>
+            <MenuItem value={'week'}>Daily</MenuItem>
+            <MenuItem value={'day'}>Weekly</MenuItem>
           </Select>
         </FormControl>
       </div>
