@@ -3,7 +3,8 @@ import './App.css';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Add from '@material-ui/icons/Add';
-import Radio from '@material-ui/core/Radio';
+import RadioButtons  from './components/radioButtons';
+
 
 function TodoForm({addTodo,date}){
   const [value, setValue] = useState("");
@@ -28,35 +29,16 @@ function TodoForm({addTodo,date}){
   );
 }
 
+
 function Todo({index, todo, date, deleteTodo}){
+  const [colour, setColour] = useState("default");
+
+  const handleTrigger = (colour) => {setColour(colour)};
+
   return (
-    <div className="todo"><p>{todo.text}</p>
+    <div className="todo" style={{ "backgroundColor": colour}}><p>{todo.text}</p>
       <div className="icons">
-          <Radio
-          //checked={selectedValue === 'a'}
-          //onChange={handleChange}
-          size="small"
-          value="a"
-          name="radio-button-demo"
-          inputProps={{ 'aria-label': 'A' }}
-        />
-                <Radio
-          //checked={selectedValue === 'a'}
-          //onChange={handleChange}
-          size="small"
-          value="a"
-          name="radio-button-demo"
-          inputProps={{ 'aria-label': 'A' }}
-        />
-        <Radio
-          //checked={selectedValue === 'a'}
-          //onChange={handleChange}
-          fill="green"
-          size="small"
-          value="a"
-          name="radio-button-demo"
-          inputProps={{ 'aria-label': 'A' }}
-        />
+       <RadioButtons onTrigger={handleTrigger}/>
         <IconButton aria-label="delete" onClick={()=> deleteTodo(index, date)}>
           <DeleteIcon />
         </IconButton>

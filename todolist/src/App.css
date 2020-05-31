@@ -1,3 +1,4 @@
+
 .app {
   text-align: center;
   display: flex; 
@@ -19,7 +20,7 @@
 }
 
 .todo {
-  background: #fff;
+  background: #f2b4b4;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   padding: 3px 10px;
   font-size: 12px;
