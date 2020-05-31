@@ -4,9 +4,9 @@ import { green, red, orange } from '@material-ui/core/colors';
 import React, {  useState, setState }  from 'react';
 
 const colors = {
-    red: "#f2b4b4",
-    orange: "#FAD086",
-    green: "#B6FCCD"
+    red: "#fd9191",
+    orange: "#fdc791",
+    green: "#91fdc7"
 }
 
 const GreenRadio = withStyles({

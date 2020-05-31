@@ -2,6 +2,7 @@ import React, {  useState, setState }  from 'react';
 import './App.css';
 import { TodoForm } from './components/ToDoForm';
 import { Todo } from './components/Todo';
+import DenseAppBar from './components/NavBar';
 
 function App() {
  
@@ -37,13 +38,11 @@ function App() {
   }
 
   return (
+    <div className='app'>
+      <div className="header-container">
+        <DenseAppBar/>
+      </div>
     <div>
-    <header className="app-header"> 
-    <p>
-    Weekly To-Do List
-    </p>
-    </header>
-    <div className="app">
       <div className='days'>
         {todos.map((day,index)=>(
           <div className="day">
