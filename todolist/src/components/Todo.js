@@ -8,7 +8,7 @@ export function Todo({index, todo, date, deleteTodo}){
     const [priority, setPriority] = useState(0);
 
     const handleColour = (colour) => {setColour(colour)};
-    const handlePriority = (priority) => {setPriority(priority); console.log(priority)}; 
+    const handlePriority = (priority) => {setPriority(priority)}; 
 
     return (
       <div className="todo" style={{ "backgroundColor": colour, 'order': priority}}><p>{todo.text}</p>
