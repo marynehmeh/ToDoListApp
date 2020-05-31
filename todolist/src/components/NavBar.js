@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ControlledOpenSelect() {
     const classes = useStyles();
-    const [view, setView] = useState('');
+    const [view, setView] = useState('week');
     const [open, setOpen] = useState(false);
   
     const handleChange = (event) => {
@@ -48,8 +48,8 @@ function ControlledOpenSelect() {
             onChange={handleChange}
             label="View"
           >
-            <MenuItem value={'Day'}>Daily</MenuItem>
-            <MenuItem value={'Week'}>Weekly</MenuItem>
+            <MenuItem value={'day'}>Daily</MenuItem>
+            <MenuItem value={'week'}>Weekly</MenuItem>
           </Select>
         </FormControl>
       </div>
