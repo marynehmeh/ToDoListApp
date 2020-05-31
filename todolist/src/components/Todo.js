@@ -5,13 +5,15 @@ import IconButton from '@material-ui/core/IconButton';
 
 export function Todo({index, todo, date, deleteTodo}){
     const [colour, setColour] = useState("default");
-  
-    const handleTrigger = (colour) => {setColour(colour)};
-  
+    const [priority, setPriority] = useState(0);
+
+    const handleColour = (colour) => {setColour(colour)};
+    const handlePriority = (priority) => {setPriority(priority); console.log(priority)}; 
+
     return (
-      <div className="todo" style={{ "backgroundColor": colour}}><p>{todo.text}</p>
+      <div className="todo" style={{ "backgroundColor": colour, 'order': priority}}><p>{todo.text}</p>
         <div className="icons">
-         <RadioButtons onTrigger={handleTrigger}/>
+         <RadioButtons onTrigger={handleColour} onChangePriority={handlePriority}/>
           <IconButton aria-label="delete" onClick={()=> deleteTodo(index, date)}>
             <DeleteIcon />
           </IconButton>

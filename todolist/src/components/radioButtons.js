@@ -39,7 +39,7 @@ const OrangeRadio = withStyles({
     checked: {},
   })((props) => <Radio size="small" color="default" {...props} />);
 
-export default function RadioButtons({onTrigger}) {
+export default function RadioButtons({onTrigger, onChangePriority}) {
     const [selectedValue, setSelectedValue] = useState('toDo');
 
     const handleChange = (event) => {
@@ -51,7 +51,7 @@ export default function RadioButtons({onTrigger}) {
         <RedRadio
           checked={selectedValue === 'toDo'}
           onChange={handleChange}
-          onClick={() => onTrigger(colors.red)}
+          onClick={() => {onTrigger(colors.red); onChangePriority(0);}}
           value="toDo"
           name="radio-button"
           inputProps={{ 'aria-label': 'TODO' }}
@@ -59,7 +59,7 @@ export default function RadioButtons({onTrigger}) {
         <OrangeRadio
           checked={selectedValue === 'inProgress'}
           onChange={handleChange}
-          onClick={() => onTrigger(colors.orange)}
+          onClick={() => { onTrigger(colors.orange); onChangePriority(1);} }
           value="inProgress"
           name="radio-button"
           inputProps={{ 'aria-label': 'INPROGRESS' }}
@@ -67,7 +67,7 @@ export default function RadioButtons({onTrigger}) {
         <GreenRadio
           checked={selectedValue === 'done'}
           onChange={handleChange}
-          onClick={() => onTrigger(colors.green)}
+          onClick={() => {onTrigger(colors.green); onChangePriority(2);}}
           value="done"
           name="radio-button"
           inputProps={{ 'aria-label': 'DONE' }}
