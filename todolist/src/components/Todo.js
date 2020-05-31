@@ -14,7 +14,7 @@ export function Todo({index, todo, date, deleteTodo}){
       <div className="todo" style={{ "backgroundColor": colour, 'order': priority}}><p>{todo.text}</p>
         <div className="icons">
          <RadioButtons onTrigger={handleColour} onChangePriority={handlePriority}/>
-          <IconButton aria-label="delete" onClick={()=> deleteTodo(index, date)}>
+          <IconButton aria-label="delete" size="small" onClick={()=> deleteTodo(index, date)}>
             <DeleteIcon />
           </IconButton>
         </div>
