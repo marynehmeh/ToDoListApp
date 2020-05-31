@@ -17,19 +17,20 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function ControlledOpenSelect() {
+function ControlledOpenSelect({onTrigger}) {
     const classes = useStyles();
-    const [view, setView] = useState('week');
+    const [view, setView] = useState("week");
     const [open, setOpen] = useState(false);
-  
-    const handleChange = (event) => {
-      setView(event.target.value);
-    };
   
     const handleClose = () => {
       setOpen(false);
     };
-  
+    
+    const onChange = (event) => {
+        setView(event.target.value);
+        onTrigger(view);
+        console.log(view);
+    }
     const handleOpen = () => {
       setOpen(true);
     };
@@ -45,7 +46,7 @@ function ControlledOpenSelect() {
             onClose={handleClose}
             onOpen={handleOpen}
             value={view}
-            onChange={handleChange}
+            onChange={(event)=>{onChange(event)}}
             label="View"
           >
             <MenuItem value={'day'}>Daily</MenuItem>
@@ -56,7 +57,7 @@ function ControlledOpenSelect() {
     );
   }
 
-export default function DenseAppBar() {
+export default function DenseAppBar({handleView}) {
 
   return (
     <div className="nav-bar">
@@ -68,7 +69,7 @@ export default function DenseAppBar() {
             toDoIt
           </Typography>
           </div>
-          <ControlledOpenSelect />
+          <ControlledOpenSelect onTrigger={handleView} />
         </Toolbar>
       </AppBar>
     </div>

@@ -22,6 +22,10 @@ function App() {
           { day: 'Sunday',
       tasks: [ ] } ,
   ]);
+  
+  const [view, setView] = useState("week")
+
+  const handleView = (view) => {setView(view)}
 
   const addTodo = (value,date) => {
     const dayTodo = todos.filter(day => day.day === date)[0]; 
@@ -40,7 +44,7 @@ function App() {
   return (
     <div className='app'>
       <div className="header-container">
-        <DenseAppBar/>
+        <DenseAppBar handleView={handleView}/>
       </div>
     <div>
       <div className='days'>
@@ -54,6 +58,7 @@ function App() {
           </div>
       ))}
       </div>
+      {view}
     </div>
     </div>
   );
