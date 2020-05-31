@@ -40,7 +40,6 @@
   margin: 5px 5px 0 0;
 }
 
-
 .todo-list {
   position: center;
   background: white;
@@ -76,6 +75,19 @@
   margin: 2px;
   width: 400px;
   }
+
+.day-container{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.day-view{
+  border: 2px solid black;
+  padding: 5px;
+  margin: 2px;
+  width: 400px;
+}
 
 .day-tag {
   background: #FDFD91;

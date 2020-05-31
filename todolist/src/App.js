@@ -46,7 +46,6 @@ function App() {
       <div className="header-container">
         <DenseAppBar handleView={handleView}/>
       </div>
-    <div>
     {view === 'week' ? 
     <div className='days'>
         {todos.map((day,index)=>(
@@ -59,16 +58,16 @@ function App() {
           </div>
       ))}
       </div>: 
-        <div className='days'>
-          <div className="day">
+      <div className="day-container">
+        <div className="day-view">
           <div className="todo-list">
             <div className="day-tag">Monday</div> 
             <TodoForm addTodo={addTodo} date="Monday" /> 
             {todos[0].tasks.map((todo,index)=> (<Todo id='task' key={index} index={index} date="Monday" todo={todo} deleteTodo={deleteTodo}/>))}
           </div>
           </div>
-      </div>}
-    </div>
+      </div>
+        }
     </div>
   );
 }
