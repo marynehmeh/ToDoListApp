@@ -1,5 +1,5 @@
 import Radio from '@material-ui/core/Radio';
-import { withStyles, unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { green, red, orange } from '@material-ui/core/colors';
 import React, {  useState, setState }  from 'react';
 
