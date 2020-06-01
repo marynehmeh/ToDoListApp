@@ -80,7 +80,9 @@ function App() {
             <TodoForm addTodo={addTodo} date={dayView.day} /> 
             {todos[dayView.index].tasks.map((todo,index)=> (<Todo id='task' key={index} index={index} date={dayView.day} todo={todo} deleteTodo={deleteTodo}/>))}
           </div>
+          <div className="arrow-buttons-container">
           <ArrowDarkButton onTriggerLeft={()=>handleDayViewLeft()} onTriggerRight={()=>handleDayViewRight()} dayIndex={dayView.index}/>
+          </div>
           </div>
       </div>
         }
