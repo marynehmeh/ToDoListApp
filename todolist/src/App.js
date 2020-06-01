@@ -3,9 +3,10 @@ import './App.css';
 import { TodoForm } from './components/ToDoForm';
 import { Todo } from './components/Todo';
 import DenseAppBar from './components/NavBar';
+import ArrowDarkButton from './components/ArrowButtons'; 
 
 function App() {
- 
+ const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ];
   const [todos, setTodos] = useState([
     { day: 'Monday',
       tasks: [ ] } ,
@@ -23,10 +24,24 @@ function App() {
       tasks: [ ] } ,
   ]);
   
-  const [view, setView] = useState("week")
+  const [view, setView] = useState("week");
+  const [dayView, setDayView] = useState({index: 0, day:days[0]});
+  
+  const handleDayViewRight = () => {
+    let newDayView ={index:0, day:days[0]}; 
+    newDayView.index = dayView.index+1; 
+    newDayView.day = days[newDayView.index];
+    setDayView(newDayView);
+  };
 
-  const handleView = (view) => {setView(view)}
+  const handleDayViewLeft = () => {
+    let newDayView ={index:0, day:days[0]}; 
+    newDayView.index = dayView.index-1; 
+    newDayView.day = days[newDayView.index];
+    setDayView(newDayView);
+  };
 
+  const handleView = (view) => {setView(view)};
   const addTodo = (value,date) => {
     const dayTodo = todos.filter(day => day.day === date)[0]; 
     dayTodo.tasks = [...dayTodo.tasks, {text: value}]
@@ -40,7 +55,7 @@ function App() {
     const newTodos = [...todos];
     setTodos(newTodos);
   }
- //TO-DO: add filter based on view selector
+
   return (
     <div className='app'>
       <div className="header-container">
@@ -61,10 +76,11 @@ function App() {
       <div className="day-container">
         <div className="day-view">
           <div className="todo-list">
-            <div className="day-tag">Monday</div> 
-            <TodoForm addTodo={addTodo} date="Monday" /> 
-            {todos[0].tasks.map((todo,index)=> (<Todo id='task' key={index} index={index} date="Monday" todo={todo} deleteTodo={deleteTodo}/>))}
+            <div className="day-tag">{dayView.day}</div> 
+            <TodoForm addTodo={addTodo} date={dayView.day} /> 
+            {todos[dayView.index].tasks.map((todo,index)=> (<Todo id='task' key={index} index={index} date={dayView.day} todo={todo} deleteTodo={deleteTodo}/>))}
           </div>
+          <ArrowDarkButton onTriggerLeft={()=>handleDayViewLeft()} onTriggerRight={()=>handleDayViewRight()} dayIndex={dayView.index}/>
           </div>
       </div>
         }
